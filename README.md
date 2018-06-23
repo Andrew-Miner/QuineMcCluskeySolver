@@ -1,6 +1,6 @@
 # Quine McCluskey Simplifier
 
-This simplifier utilizes both Quine McCluskey and Petrick's method to simplify boolean algebra expressions.
+This simplifier utilizes both Quine McCluskey's and Petrick's methods to simplify boolean algebra expressions.
 
 I initially wrote one recursive function to perform the basics of the QM method. I was so pleased with this one function that it inspired me to write the rest.
 
