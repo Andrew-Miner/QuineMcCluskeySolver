@@ -1,4 +1,6 @@
-# Quine McCluskey Simplifier
+# Quine McCluskey Simplifier - Outdated
+
+NOTE: This version is outdated as the most current version is located locally on a seperate computer. Expect an update soon.
 
 This simplifier utilizes both Quine McCluskey's and Petrick's methods to simplify boolean algebra expressions.
 
