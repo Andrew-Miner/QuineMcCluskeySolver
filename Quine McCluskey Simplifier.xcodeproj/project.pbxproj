@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		4959D30820E1D399005F588F /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4959D30720E1D399005F588F /* main.cpp */; };
+		4959D31020E1D3F5005F588F /* BoolExpression.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4959D30E20E1D3F5005F588F /* BoolExpression.cpp */; };
+		4959D32F20E1DAF0005F588F /* PMFunctions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4959D32A20E1DAF0005F588F /* PMFunctions.cpp */; };
+		4959D33020E1DAF0005F588F /* QMFunctions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4959D32C20E1DAF0005F588F /* QMFunctions.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +28,13 @@
 /* Begin PBXFileReference section */
 		4959D30420E1D399005F588F /* Quine McCluskey Simplifier */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Quine McCluskey Simplifier"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4959D30720E1D399005F588F /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		4959D30E20E1D3F5005F588F /* BoolExpression.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BoolExpression.cpp; sourceTree = "<group>"; };
+		4959D30F20E1D3F5005F588F /* BoolExpression.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BoolExpression.hpp; sourceTree = "<group>"; };
+		4959D32A20E1DAF0005F588F /* PMFunctions.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PMFunctions.cpp; sourceTree = "<group>"; };
+		4959D32B20E1DAF0005F588F /* PMFunctions.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PMFunctions.hpp; sourceTree = "<group>"; };
+		4959D32C20E1DAF0005F588F /* QMFunctions.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = QMFunctions.cpp; sourceTree = "<group>"; };
+		4959D32D20E1DAF0005F588F /* QMFunctions.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = QMFunctions.hpp; sourceTree = "<group>"; };
+		4959D32E20E1DAF0005F588F /* RPNFunctions.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = RPNFunctions.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,7 +67,14 @@
 		4959D30620E1D399005F588F /* Quine McCluskey Simplifier */ = {
 			isa = PBXGroup;
 			children = (
+				4959D32A20E1DAF0005F588F /* PMFunctions.cpp */,
+				4959D32B20E1DAF0005F588F /* PMFunctions.hpp */,
+				4959D32C20E1DAF0005F588F /* QMFunctions.cpp */,
+				4959D32D20E1DAF0005F588F /* QMFunctions.hpp */,
+				4959D32E20E1DAF0005F588F /* RPNFunctions.hpp */,
 				4959D30720E1D399005F588F /* main.cpp */,
+				4959D30E20E1D3F5005F588F /* BoolExpression.cpp */,
+				4959D30F20E1D3F5005F588F /* BoolExpression.hpp */,
 			);
 			path = "Quine McCluskey Simplifier";
 			sourceTree = "<group>";
@@ -119,7 +136,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4959D32F20E1DAF0005F588F /* PMFunctions.cpp in Sources */,
 				4959D30820E1D399005F588F /* main.cpp in Sources */,
+				4959D31020E1D3F5005F588F /* BoolExpression.cpp in Sources */,
+				4959D33020E1DAF0005F588F /* QMFunctions.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

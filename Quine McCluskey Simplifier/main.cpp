@@ -29,56 +29,61 @@ int main(int argc, const char * argv[])
         vector<string> originalExp;
         queue<string> reversePolish;
         
-        if (parseExpression(originalExp, expression) && parseRPNQueue(reversePolish, originalExp))
+        if(expression.size()!= 1 || toupper(expression[0]) != 'X')
         {
-            displayTable(reversePolish, originalExp);
+            if (parseExpression(originalExp, expression) && parseRPNQueue(reversePolish, originalExp))
+            {
+                displayTable(reversePolish, originalExp);
             
-            vector<size_t> minTerms = calculateMinTerms(reversePolish, originalExp);
-            cout << endl << "Min Terms: ";
-            for (vector<size_t>::iterator it = minTerms.begin(); it != minTerms.end(); ++it)
+                vector<size_t> minTerms = calculateMinTerms(reversePolish, originalExp);
+                cout << endl << "Min Terms: ";
+                for (vector<size_t>::iterator it = minTerms.begin(); it != minTerms.end(); ++it)
                 cout << *it << " ";
-            cout << endl;
+                cout << endl;
             
-            BoolExpression exp(minTerms, MinTerms());
+                BoolExpression exp(minTerms, MinTerms());
             
-            QMVec primeImps = exp.getPrimeImplicants();
-            SOP petricks = exp.getPetrickSOP();
-            int varCount = exp.getVarCount();
+                QMVec primeImps = exp.getPrimeImplicants();
+                SOP petricks = exp.getPetrickSOP();
+                int varCount = exp.getVarCount();
             
-            std::cout << "Prime Implicants: " << std::endl;
-            std::cout << std::string(35 + varCount, '-') << std::endl;
+                std::cout << "Prime Implicants: " << std::endl;
+                std::cout << std::string(35 + varCount, '-') << std::endl;
             
-            for (QM::QMTerm term : primeImps)
-            {
-                std::vector<size_t> minTerms = QM::extractMinTerms(term);
+                for (QM::QMTerm term : primeImps)
+                {
+                    std::vector<size_t> minTerms = QM::extractMinTerms(term);
                 
-                std::string minStr = "[";
+                    std::string minStr = "[";
                 
-                for (size_t min : minTerms)
-                    minStr += std::to_string(min) + "-";
-                minStr[minStr.size() - 1] = ']';
+                    for (size_t min : minTerms)
+                        minStr += std::to_string(min) + "-";
+                    minStr[minStr.size() - 1] = ']';
                 
-                std::cout << minStr << std::string((minStr.length() < 35) ? 35 - minStr.length() : 1, ' ');
+                    std::cout << minStr << std::string((minStr.length() < 35) ? 35 - minStr.length() : 1, ' ');
                 
-                QM::printQMTerm(std::cout, term, varCount) << std::endl;
+                    QM::printQMTerm(std::cout, term, varCount) << std::endl;
+                }
+            
+                std::cout << std::endl << std::endl;
+            
+            
+                for (int i = 0; i < petricks.size(); i++)
+                {
+                    std::cout << "Solution " + std::to_string(i + 1) + ": ";
+                    PM::printPretrickProduct(std::cout, petricks.at(i), varCount) << std::endl << std::endl << std::endl;
+                }
+            
+                std::cout << std::endl;
             }
-            
-            std::cout << std::endl << std::endl;
-            
-            
-            for (int i = 0; i < petricks.size(); i++)
-            {
-                std::cout << "Solution " + std::to_string(i + 1) + ": ";
-                PM::printPretrickProduct(std::cout, petricks.at(i), varCount) << std::endl << std::endl << std::endl;
-            }
-            
-            std::cout << std::endl;
+            else
+                cout << "Error: Invalid Expression!" << endl;
         }
-        else
-            cout << "Error: Invalid Expression!" << endl;
         
         cout << endl << endl << endl;
         
-    } while (expression.size()!= 1 || expression[0] != 'X');
+    } while (expression.size()!= 1 || toupper(expression[0]) != 'X');
+    
+    cout << "Done" << endl;
     return 0;
 }
