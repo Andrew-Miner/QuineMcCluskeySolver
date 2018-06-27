@@ -100,7 +100,7 @@ std::vector<size_t> QM::extractMinTerms(const QMTerm & qmTerm)
 void QM::reduceTerms(const std::vector<QMTerm>& terms, std::vector<QMTerm>& resultant)
 {
     std::vector<QMTerm> tmpTerms = terms,
-    reducedTerms;
+                        reducedTerms;
     
     for (std::vector<QMTerm>::iterator it = tmpTerms.begin(); it != tmpTerms.end();)
     {
@@ -202,10 +202,10 @@ int QM::nextDash(const std::bitset<MAX_TERMS>& dashMask, int pos)
 
 bool QM::parseString(std::vector<size_t>& parsedMin, std::vector<size_t>& parsedDonts, const std::string & line)
 {
-    std::regex fullExpression("^(" + REG_TERMS + ")(" + REG_DONTS + ")?$");
-    std::regex regTerms(REG_TERMS);
-    std::regex regDonts(REG_DONTS);
-    std::regex regNumbs("\\d+");
+    const std::regex fullExpression("^(" + REG_TERMS + ")(" + REG_DONTS + ")?$");
+    const std::regex regTerms(REG_TERMS);
+    const std::regex regDonts(REG_DONTS);
+    const std::regex regNumbs("\\d+");
     
     // m(1,2,3,4) + d(5,6,7,8)
     if (!std::regex_match(line, fullExpression))

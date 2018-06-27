@@ -6,6 +6,13 @@
 //  Copyright © 2018 Andrew Miner. All rights reserved.
 //
 
+// TODO:
+//      * Use State Machine To Parse Equations
+//      * Create Function to get row value
+//        (May require var count)
+//      * Rewrite/Remove any functions that hold
+//        the variable indices backwards
+
 #ifndef RPNFunctions_hpp
 #define RPNFunctions_hpp
 

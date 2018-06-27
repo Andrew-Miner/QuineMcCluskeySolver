@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Quine McCluskey Simplifier/QMFunctions.cpp"
+            timestampString = "551756801.649808"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "24"
+            endingLineNumber = "24"
+            landmarkName = "QM::getPrimeImplicants(const std::vector&lt;size_t&gt;&amp; minTerms, const std::vector&lt;size_t&gt;&amp; dontCares)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Quine McCluskey Simplifier/QMFunctions.cpp"
+            timestampString = "551756806.871102"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "292"
+            endingLineNumber = "292"
+            landmarkName = "QM::getEssentialTerms(const std::vector&lt;QMTerm&gt;&amp; terms, const std::vector&lt;size_t&gt; minTerms)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "QM::getEssentialTerms(std::__1::vector&lt;QM::QMTerm, std::__1::allocator&lt;QM::QMTerm&gt; &gt; const&amp;, std::__1::vector&lt;unsigned long, std::__1::allocator&lt;unsigned long&gt; &gt;)"
+                  moduleName = "Quine McCluskey Simplifier"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/andrew/Documents/Github%20Projects/Quine%20McCluskey%20Simplifier/Quine%20McCluskey%20Simplifier/QMFunctions.cpp"
+                  timestampString = "551758311.9283201"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "292"
+                  endingLineNumber = "292"
+                  offsetFromSymbolStart = "2419">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "QM::getEssentialTerms(std::__1::vector&lt;QM::QMTerm, std::__1::allocator&lt;QM::QMTerm&gt; &gt; const&amp;, std::__1::vector&lt;unsigned long, std::__1::allocator&lt;unsigned long&gt; &gt;)"
+                  moduleName = "Quine McCluskey Simplifier"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/andrew/Documents/Github%20Projects/Quine%20McCluskey%20Simplifier/Quine%20McCluskey%20Simplifier/QMFunctions.cpp"
+                  timestampString = "551758311.932404"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "292"
+                  endingLineNumber = "292"
+                  offsetFromSymbolStart = "2446">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "QM::getEssentialTerms(std::__1::vector&lt;QM::QMTerm, std::__1::allocator&lt;QM::QMTerm&gt; &gt; const&amp;, std::__1::vector&lt;unsigned long, std::__1::allocator&lt;unsigned long&gt; &gt;)"
+                  moduleName = "Quine McCluskey Simplifier"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/andrew/Documents/Github%20Projects/Quine%20McCluskey%20Simplifier/Quine%20McCluskey%20Simplifier/QMFunctions.cpp"
+                  timestampString = "551758311.9370559"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "292"
+                  endingLineNumber = "292"
+                  offsetFromSymbolStart = "2567">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Quine McCluskey Simplifier/PMFunctions.cpp"
+            timestampString = "551756815.799687"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "276"
+            endingLineNumber = "276">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
