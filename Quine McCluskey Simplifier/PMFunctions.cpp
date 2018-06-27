@@ -120,7 +120,6 @@ namespace PM
         
         // Find largest dash count and remove those smaller
         unsigned long largestDash = 0;
-        //int term = 1;
         
         for (SOP::iterator it = expression.begin(); it < expression.end();)
         {
