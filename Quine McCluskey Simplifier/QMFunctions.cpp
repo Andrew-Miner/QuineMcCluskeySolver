@@ -12,7 +12,7 @@
 #include <regex>
 #include <iomanip>
 
-std::vector<QM::QMTerm> QM::getPrimeImplicants(const std::vector<size_t>& minTerms, const std::vector<size_t>& dontCares, const int& varCount)
+std::vector<QM::QMTerm> QM::getPrimeImplicants(const std::vector<size_t>& minTerms, const std::vector<size_t>& dontCares)
 {
     std::vector<size_t> allInts = minTerms;
     allInts.insert(allInts.end(), dontCares.begin(), dontCares.end());
@@ -21,7 +21,7 @@ std::vector<QM::QMTerm> QM::getPrimeImplicants(const std::vector<size_t>& minTer
     formatQMTerms(terms);
     
     std::vector<QMTerm> resultant;
-    reduceTerms(terms, resultant, varCount);
+    reduceTerms(terms, resultant);
     
     removeDuplicateTerms(resultant);
     
@@ -97,7 +97,7 @@ std::vector<size_t> QM::extractMinTerms(const QMTerm & qmTerm)
     return resultant;
 }
 
-void QM::reduceTerms(const std::vector<QMTerm>& terms, std::vector<QMTerm>& resultant, int varCount)
+void QM::reduceTerms(const std::vector<QMTerm>& terms, std::vector<QMTerm>& resultant)
 {
     std::vector<QMTerm> tmpTerms = terms,
     reducedTerms;
@@ -148,7 +148,7 @@ void QM::reduceTerms(const std::vector<QMTerm>& terms, std::vector<QMTerm>& resu
     if (reducedTerms.size() != 0)
     {
         removeDuplicateTerms(reducedTerms);
-        reduceTerms(reducedTerms, resultant, varCount);
+        reduceTerms(reducedTerms, resultant);
     }
 }
 

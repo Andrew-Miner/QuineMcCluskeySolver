@@ -34,12 +34,12 @@ namespace QM
         }
     };
     
-    std::vector<QM::QMTerm> getPrimeImplicants(const std::vector<size_t>& minTerms, const std::vector<size_t>& dontCares, const int& varCount);
+    std::vector<QM::QMTerm> getPrimeImplicants(const std::vector<size_t>& minTerms, const std::vector<size_t>& dontCares);
     
     std::ostream& printQMTerm(std::ostream& out, const QMTerm& term, int variables = 0);
     std::vector<size_t> extractMinTerms(const QMTerm& qmTerm);
     
-    void reduceTerms(const std::vector<QMTerm>& terms, std::vector<QMTerm>& resultant, int varCount);
+    void reduceTerms(const std::vector<QMTerm>& terms, std::vector<QMTerm>& resultant);
     void removeDuplicateTerms(std::vector<QMTerm>& terms);
     
     int prevDash(const std::bitset<MAX_TERMS>& dashMask, int pos);

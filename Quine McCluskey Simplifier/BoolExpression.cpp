@@ -75,7 +75,7 @@ bool BoolExpression::setExpression(const std::string & expression)
 
 void BoolExpression::reduce()
 {
-    QMVec nonEssentialPrimeImps = QM::getPrimeImplicants(minTerms, dontCares, varCount);
+    QMVec nonEssentialPrimeImps = QM::getPrimeImplicants(minTerms, dontCares);
     petrickSOP = PM::getPetrickSOP(nonEssentialPrimeImps, minTerms);
     primeImps = QM::getEssentialTerms(nonEssentialPrimeImps, minTerms);
 }
