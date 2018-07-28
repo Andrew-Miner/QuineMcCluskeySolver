@@ -39,11 +39,11 @@
 .vs/
 
 #XCode
-#.xcworkspacedata
-#.xcbkptlist
-#.xscheme
-#.plist
-#.project.pbxproj
+.xcworkspacedata
+.xcbkptlist
+.xscheme
+.plist
+.project.pbxproj
 
 #Debug Folder
 Debug/
