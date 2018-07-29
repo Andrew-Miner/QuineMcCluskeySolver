@@ -15,7 +15,12 @@ BoolExpression::BoolExpression(const MinTerms& minTerms, const MinTerms& dontCar
 {
     int errorTerm;
     if (!validateTerms(minTerms, dontCares, errorTerm))
-        throw std::invalid_argument(std::to_string(errorTerm) + " cannot be both a min term and a don't care");
+	{
+		if (errorTerm == -1)
+			throw std::invalid_argument("Cannot have 0 min terms");
+		else
+			throw std::invalid_argument(std::to_string(errorTerm) + " cannot be both a min term and a don't care");
+	}
     
     this->minTerms = minTerms;
     this->dontCares = dontCares;
@@ -31,8 +36,13 @@ BoolExpression::BoolExpression(const std::string& expression) : varCount(0)
         throw std::invalid_argument("Expression not valid");
     
     int errorTerm;
-    if (!validateTerms(minTerms, dontCares, errorTerm))
-        throw std::invalid_argument(std::to_string(errorTerm) + " cannot be both a min term and a don't care");
+	if (!validateTerms(minTerms, dontCares, errorTerm))
+	{
+		if (errorTerm == -1)
+			throw std::invalid_argument("Cannot have 0 min terms");
+		else
+			throw std::invalid_argument(std::to_string(errorTerm) + " cannot be both a min term and a don't care");
+	}
     
     varCount = QM::getVariableCount(minTerms, dontCares);
     reduce();

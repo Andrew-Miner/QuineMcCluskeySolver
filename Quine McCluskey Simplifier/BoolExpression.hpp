@@ -20,7 +20,7 @@
 // Wishlist:
 //      * Replace Basic Operations with their
 //        Secondary counterparts
-//        On second thought bad maybe not
+//        On second thought maybe not
 //        because circuit designers might
 //        find use in seeing the Basic Operators
 

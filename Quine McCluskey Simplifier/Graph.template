@@ -1,0 +1,89 @@
+// File: Graph.template
+// TEMPLATE CLASS IMPLEMENTED: graph<T>
+// This file is included in the header file and not compiled separately.
+// INVARIANT for the graph class:
+//   1. The number of vertices in the graph is stored in the member variable vertexCount.
+//      These vertices are numbered from 0 to vertexCount - 1.
+//	 2. edges is the adjacency matrix for the graph (with true in edges[i][j] to indicate and
+//      edge from vertex i to vertex j).
+//   3. For each i < vertexCount, labels[i] is the label of vertex i.
+
+#pragma once
+#include <cassert> // Provides assert
+#include <cstdlib> // Provides size_t
+#include <set> // Provides set
+#include "Graph.h"
+
+template <class T>
+const std::size_t Graph<T>::MAXIMUM;
+
+template <class T>
+void Graph<T>::addVertex(const T& label)
+{
+	assert(size() < MAXIMUM);
+
+	std::size_t newVertexNumber = vertexCount++;
+
+	for(std::size_t otherNumber = 0; otherNumber < vertexCount; ++otherNumber)
+	{
+		edges[otherNumber][newVertexNumber] = false;
+		edges[newVertexNumber][otherNumber] = false;
+	}
+
+	labels[newVertexNumber] = label;
+}
+
+template <class T>
+void Graph<T>::addEdge(std::size_t source, std::size_t target)
+{
+	assert(source < size());
+	assert(target < size());
+	edges[source][target] = true;
+}
+
+template <class T>
+T& Graph<T>::operator[] (std::size_t vertex)
+{
+	assert(vertex < size());
+	return labels[vertex];
+}
+
+template <class T>
+void Graph<T>::removeEdge(std::size_t source, std::size_t target)
+{
+	assert(source < size());
+	assert(target < size());
+	edges[source][target] = false;
+}
+
+template <class T>
+bool Graph<T>::isEdge(std::size_t source, std::size_t target) const
+{
+	assert(source < size());
+	assert(target < size());
+	return edges[source][target];
+}
+
+template <class T>
+std::set<std::size_t> Graph<T>::neighbors(std::size_t vertex) const
+{
+	assert(vertex < size());
+
+	std::set<std::size_t> answer;
+	std::size_t i;
+
+	for (i = 0; i < size(); ++i)
+	{
+		if (edges[vertex][i])
+			answer.insert(i);
+	}
+
+	return answer;
+}
+
+template <class T>
+const T& Graph<T>::operator[] (std::size_t vertex) const
+{
+	assert(vertex < size());
+	return labels[vertex];
+}

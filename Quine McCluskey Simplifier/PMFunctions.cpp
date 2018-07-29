@@ -253,7 +253,7 @@ namespace PM
     {
         int varLimit = (varCount == 0) ? QM::MAX_TERMS - 1 : varCount - 1;
         
-        for (Product::const_iterator term = product.begin(); term != product.end(); ++term)
+        for (Product::const_reverse_iterator term = product.crbegin(); term != product.crend(); ++term)
         {
             for (int i = varLimit; i >= 0; i--)
             {
@@ -266,7 +266,7 @@ namespace PM
                 }
             }
             
-            if (term + 1 != product.end())
+            if (term + 1 != product.crend())
                 out << " + ";
         }
         
