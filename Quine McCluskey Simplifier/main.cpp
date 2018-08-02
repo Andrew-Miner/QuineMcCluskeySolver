@@ -10,23 +10,11 @@
 #include "BoolExpression.hpp"
 #include "ExpressionParser.h"
 
-void test();
 void stringToUpper(std::string& src);
 
 int main(int argc, const char * argv[])
 {
-	test();
-	return 0;
-}
-
-void stringToUpper(std::string& src)
-{
-	for (char& c : src)
-		c = toupper(c);
-}
-
-void test()
-{
+	//test();
 	std::string exp;
 	ExpressionParser parser;
 
@@ -37,45 +25,24 @@ void test()
 		fflush(stdin);
 		stringToUpper(exp);
 
-		parser.setExpression(exp);
-
-		std::cout << "Valid: " << parser.isValid() << std::endl;
-		std::cout << "Expression: " << parser.getExpression() << std::endl;
-		
-		std::cout << "Infix: ";
-		std::vector<Token*> inf = parser.getInfixTokens();
-		for (std::vector<Token*>::iterator it = inf.begin(); it != inf.end(); ++it)
-			std::cout << (*it)->getToken();
-		std::cout << " " << inf.size() << std::endl;
-
-		std::cout << "Postfix: ";
-		std::vector<Token*> rpn = parser.getPostfixTokens();
-		for (std::vector<Token*>::iterator it = rpn.begin(); it != rpn.end(); ++it)
-			std::cout << (*it)->getToken();
-		std::cout << std::endl;
-
-		if (!parser.isValid())
-			std::cout << "Error: Expression is not valid!!" << std::endl;
-		else if (exp.size() != 1 || exp[0] != 'X')
+		if (exp.size() != 1 || exp[0] != 'X')
 		{
 			try
 			{
-				std::cout << "Var Count: " << tbl::getVariableCount(rpn) << std::endl;
-				tbl::TruthTable table = tbl::buildTruthTable(rpn);
-				std::set<size_t> minTerms = tbl::getMinTerms(table);
+				BoolExpression expression(exp);
+				std::cout << "Var Count: " << expression.getVarCount() << std::endl;
 
+				std::vector<size_t> minTerms = expression.getMinTerms();
 				std::cout << "Min Terms: ";
-				for (std::set<size_t>::iterator it = minTerms.begin(); it != minTerms.end(); ++it)
+				for (std::vector<size_t>::iterator it = minTerms.begin(); it != minTerms.end(); ++it)
 					std::cout << *it << " ";
 				std::cout << std::endl << std::endl;
 
-				displayTable(table, parser.getExpression(), parser.getVariableCount());
+				displayTable(expression.getTruthTable(), expression.toString(), expression.getVarCount());
 
-				BoolExpression exp(std::vector<size_t>(minTerms.begin(), minTerms.end()), MinTerms());
-				QMVec primeImps = exp.getPrimeImplicants();
-				SOP petricks = exp.getPetrickSOP();
-				int varCount = exp.getVarCount();
-				std::cout << "Var Count 2: " << varCount << std::endl;
+				QMVec primeImps = expression.getPrimeImplicants();
+				SOP petricks = expression.getPetrickSOP();
+				int varCount = expression.getVarCount();
 
 				std::cout << std::endl;
 				std::cout << "Prime Implicants: " << std::endl;
@@ -104,12 +71,15 @@ void test()
 					std::cout << "Solution " + std::to_string(i + 1) + ": ";
 					PM::printPretrickProduct(std::cout, petricks.at(i), varCount) << std::endl << std::endl << std::endl;
 				}
-
-				std::cout << std::endl;
 			}
-			catch (std::invalid_argument exception) { std::cout << "Error: " << exception.what() << "!" << std::endl; }
-
-			std::cout << std::endl << std::endl;
+			catch (std::invalid_argument exception) { std::cout << "Error: " << exception.what() << "!" << std::endl << std::endl; }
 		}
 	} while (exp.size() != 1 || exp[0] != 'X');
+	return 0;
+}
+
+void stringToUpper(std::string& src)
+{
+	for (char& c : src)
+		c = toupper(c);
 }

@@ -141,12 +141,12 @@ namespace tbl
 		return digits;
 	}
 
-	void printLine(int varCount)
+	void printLine(int varCount, int expSize)
 	{
 		std::cout << std::string(numDigits(pow(2, varCount)), '-');
 		for (int i = 0; i < varCount; ++i)
 			std::cout << "|---";
-		std::cout << "||---|";
+		std::cout << "||" << std::string(expSize, '-') << "|";
 	}
 
 	void displayTable(const TruthTable& table, const std::string& expression, const int& varCount)
@@ -156,9 +156,9 @@ namespace tbl
 
 		for (int i = 0; i < varCount; ++i)
 			std::cout << "| " << char(i + 65) << " ";
-		std::cout << "||T/F|" << std::endl;
+		std::cout << "||" << expression << "|" << std::endl;
 
-		printLine(varCount);
+		printLine(varCount, expression.size());
 		std::cout << std::endl;
 
 		TruthTable::const_reverse_iterator it;
@@ -168,9 +168,9 @@ namespace tbl
 
 			for (int i = 0; i < varCount; ++i)
 				std::cout << "| " << it->variables[varCount - 1 - i] << " ";
-			std::cout << "|| " << it->truthValue << " |" << std::endl;
+			std::cout << "|| " << std::setw(expression.size() - 1) << it->truthValue << "|" << std::endl;
 
-			printLine(varCount);
+			printLine(varCount, expression.size());
 			std::cout << std::endl;
 		}
 	}

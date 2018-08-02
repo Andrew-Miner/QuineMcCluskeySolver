@@ -30,6 +30,7 @@
 
 #include <stdio.h>
 #include "PMFunctions.hpp"
+#include "ExpressionParser.h"
 
 typedef std::vector<size_t> MinTerms;
 
@@ -43,23 +44,38 @@ public:
     // @throws std::invalid_argument
     // @throws std::out_of_range
     BoolExpression(const std::string& expression);
-    
-    MinTerms getMinTerms() { return minTerms; }
-    MinTerms getDontCares() { return dontCares; }
-    SOP getPetrickSOP() { return petrickSOP; }
+
+	// check if expression valid
+    MinTerms getMinTerms() { return isValid() ? minTerms : MinTerms(); }
+    MinTerms getDontCares() { return isValid() ? dontCares : MinTerms(); }
+    SOP getPetrickSOP() { return isValid() ? petrickSOP : SOP(); }
     int getVarCount() { return varCount; }
-    QMVec getPrimeImplicants() { return primeImps; }
-    
+    QMVec getPrimeImplicants() { return isValid() ? primeImps : QMVec(); }
+
+	bool isValid() { return parser.isValid() || varCount > 0; }
+
+	// make table for minTerm constructor
+	// check if expression valid
+	tbl::TruthTable getTruthTable() { return table; }
+
     bool setExpression(const MinTerms& minTerms, const MinTerms& dontCares);
+	bool setExpression(const MinTerms& minTerms, const MinTerms& dontCares, int& errorCode);
     
     // @throws std::out_of_range
     bool setExpression(const std::string& expression);
+	bool setExpression(const std::string & expression, int& errorCode);
+
+	// check if expression valid
+	std::string toString();
     
 private:
     int varCount;
     MinTerms minTerms, dontCares;
     SOP petrickSOP;
     QMVec primeImps;
+
+	tbl::TruthTable table;
+	ExpressionParser parser;
     
     void reduce();
     bool validateTerms(const MinTerms& minTerms, const MinTerms& dontCares, int& duplicateTerm);
