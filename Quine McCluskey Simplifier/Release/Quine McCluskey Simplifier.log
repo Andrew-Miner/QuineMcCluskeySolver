@@ -1,0 +1,53 @@
+﻿  BoolExpression.cpp
+  ExpressionParser.cpp
+  GraphSearchFunctions.cpp
+  main.cpp
+main.cpp(102): warning C4018: '<' : signed/unsigned mismatch
+  ParseFunctions.cpp
+ParseFunctions.cpp(75): warning C4101: 'nextVertex' : unreferenced local variable
+c:\users\andrew fuck this\documents\github projects\quinemccluskeysolver\quine mccluskey simplifier\OperationFunctors.h(13): warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+          c:\users\andrew fuck this\documents\github projects\quinemccluskeysolver\quine mccluskey simplifier\OperationFunctors.h(13) : while compiling class template member function 'bool NorOperation<bool>::operator ()(const T &,const T &) const'
+          with
+          [
+              T=bool
+          ]
+          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\xrefwrap(283) : see reference to function template instantiation 'bool NorOperation<bool>::operator ()(const T &,const T &) const' being compiled
+          with
+          [
+              T=bool
+          ]
+          ParseFunctions.cpp(31) : see reference to class template instantiation 'NorOperation<bool>' being compiled
+c:\users\andrew fuck this\documents\github projects\quinemccluskeysolver\quine mccluskey simplifier\OperationFunctors.h(31): warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+          c:\users\andrew fuck this\documents\github projects\quinemccluskeysolver\quine mccluskey simplifier\OperationFunctors.h(31) : while compiling class template member function 'bool NandOperation<bool>::operator ()(const T &,const T &) const'
+          with
+          [
+              T=bool
+          ]
+          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\xrefwrap(283) : see reference to function template instantiation 'bool NandOperation<bool>::operator ()(const T &,const T &) const' being compiled
+          with
+          [
+              T=bool
+          ]
+          ParseFunctions.cpp(35) : see reference to class template instantiation 'NandOperation<bool>' being compiled
+  PMFunctions.cpp
+PMFunctions.cpp(131): warning C4018: '<' : signed/unsigned mismatch
+PMFunctions.cpp(149): warning C4018: '<' : signed/unsigned mismatch
+  QMFunctions.cpp
+QMFunctions.cpp(74): warning C4244: 'initializing' : conversion from 'double' to 'int', possible loss of data
+QMFunctions.cpp(194): warning C4018: '<' : signed/unsigned mismatch
+QMFunctions.cpp(223): warning C4101: 'oor' : unreferenced local variable
+QMFunctions.cpp(238): warning C4101: 'oor' : unreferenced local variable
+  TruthTableFunctions.cpp
+TruthTableFunctions.cpp(17): warning C4244: 'argument' : conversion from '_ULonglong' to 'unsigned int', possible loss of data
+TruthTableFunctions.cpp(31): warning C4018: '>' : signed/unsigned mismatch
+TruthTableFunctions.cpp(61): warning C4244: 'initializing' : conversion from 'double' to 'int', possible loss of data
+TruthTableFunctions.cpp(67): warning C4018: '<' : signed/unsigned mismatch
+TruthTableFunctions.cpp(95): warning C4018: '>' : signed/unsigned mismatch
+TruthTableFunctions.cpp(107): warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+TruthTableFunctions.cpp(130): warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+TruthTableFunctions.cpp(146): warning C4244: 'argument' : conversion from 'double' to 'int', possible loss of data
+TruthTableFunctions.cpp(154): warning C4244: 'argument' : conversion from 'double' to 'int', possible loss of data
+  Generating Code...
+c:\users\andrew fuck this\documents\github projects\quinemccluskeysolver\quine mccluskey simplifier\parsefunctions.cpp(38): warning C4715: 'eprs::buildOperatorToken' : not all control paths return a value
+LINK : warning LNK4075: ignoring '/INCREMENTAL' due to '/OPT:ICF' specification
+  Quine McCluskey Simplifier.vcxproj -> C:\Users\Andrew Fuck This\Documents\GitHub Projects\QuineMcCluskeySolver\Quine McCluskey Simplifier\Release\Quine McCluskey Simplifier.exe

@@ -41,11 +41,17 @@ void test()
 
 		std::cout << "Valid: " << parser.isValid() << std::endl;
 		std::cout << "Expression: " << parser.getExpression() << std::endl;
-		std::cout << "RPN: ";
 		
-		std::vector<char> rpn = parser.getRPNTokens();
-		for (std::vector<char>::iterator it = rpn.begin(); it != rpn.end(); ++it)
-			std::cout << *it << " ";
+		std::cout << "Infix: ";
+		std::vector<Token*> inf = parser.getInfixTokens();
+		for (std::vector<Token*>::iterator it = inf.begin(); it != inf.end(); ++it)
+			std::cout << (*it)->getToken();
+		std::cout << " " << inf.size() << std::endl;
+
+		std::cout << "Postfix: ";
+		std::vector<Token*> rpn = parser.getPostfixTokens();
+		for (std::vector<Token*>::iterator it = rpn.begin(); it != rpn.end(); ++it)
+			std::cout << (*it)->getToken();
 		std::cout << std::endl;
 
 		if (!parser.isValid())
@@ -54,6 +60,7 @@ void test()
 		{
 			try
 			{
+				std::cout << "Var Count: " << tbl::getVariableCount(rpn) << std::endl;
 				tbl::TruthTable table = tbl::buildTruthTable(rpn);
 				std::set<size_t> minTerms = tbl::getMinTerms(table);
 
@@ -68,6 +75,7 @@ void test()
 				QMVec primeImps = exp.getPrimeImplicants();
 				SOP petricks = exp.getPetrickSOP();
 				int varCount = exp.getVarCount();
+				std::cout << "Var Count 2: " << varCount << std::endl;
 
 				std::cout << std::endl;
 				std::cout << "Prime Implicants: " << std::endl;

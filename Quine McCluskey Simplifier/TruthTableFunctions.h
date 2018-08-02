@@ -24,10 +24,11 @@ namespace tbl
 
 	typedef std::vector<tableRow> TruthTable;
 
-	size_t getVariableCount(const std::vector<char>& expression);
-	TruthTable buildTruthTable(std::vector<char>& rpnTokens);
-	std::bitset<MAX_VARS> getVariables(const std::vector<char>& expression);
-	bool calculateExpression(std::vector<char> reversePolish, std::bitset<MAX_VARS>& variables, const size_t varCount);
 	std::set<size_t> getMinTerms(const TruthTable& table);
 	void displayTable(const TruthTable& table, const std::string& expression, const int& varCount);
+
+	size_t getVariableCount(const std::vector<Token*>& expression);
+	TruthTable buildTruthTable(std::vector<Token*>& rpnTokens);
+	std::bitset<MAX_VARS> getVariables(const std::vector<Token*>& expression);
+	bool calculateExpression(std::vector<Token*> rpnTokens, std::bitset<52/*MAX_VARS*/>& variables, const size_t varCount);
 }

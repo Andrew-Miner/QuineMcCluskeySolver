@@ -1,23 +1,11 @@
 #include "TruthTableFunctions.h"
+#include "Operator.h"
+#include "Variable.h"
+#include "Parenthesis.h"
+#include "Integer.h"
 
 namespace tbl
 {
-	size_t getVariableCount(const std::vector<char>& expression)
-	{
-		size_t varCount = 0;
-
-		for (char c : expression)
-		{
-			if (isalpha(c))
-			{
-				if (c - 64 > varCount)
-					varCount = c - 64;
-			}
-		}
-
-		return varCount;
-	}
-
 	std::set<size_t> getMinTerms(const TruthTable& table)
 	{
 		std::set<size_t> minTerms;
@@ -32,7 +20,39 @@ namespace tbl
 		return minTerms;
 	}
 
-	TruthTable buildTruthTable(std::vector<char>& rpnTokens)
+	size_t getVariableCount(const std::vector<Token*>& expression)
+	{
+		size_t varCount = 0;
+
+		std::vector<Token*>::const_iterator it;
+		for (it = expression.cbegin(); it != expression.cend(); ++it)
+		{
+			if ((*it)->getType() == Variable::VARIABLE_TYPE)
+				if (reinterpret_cast<Variable*>(*it)->getVar() - 64 > varCount)
+					varCount = reinterpret_cast<Variable*>(*it)->getVar() - 64;
+		}
+
+		return varCount;
+	}
+
+	std::bitset<MAX_VARS> getVariables(const std::vector<Token*>& expression)
+	{
+		std::bitset<MAX_VARS> vars;
+		size_t varCount = getVariableCount(expression);
+
+		assert(varCount <= MAX_VARS);
+
+		std::vector<Token*>::const_iterator it;
+		for (it = expression.cbegin(); it != expression.cend(); ++it)
+		{
+			if ((*it)->getType() == Variable::VARIABLE_TYPE)
+				vars[varCount - 1 - (int)(reinterpret_cast<Variable*>(*it)->getVar() - 65)] = 1;
+		}
+
+		return vars;
+	}
+
+	TruthTable buildTruthTable(std::vector<Token*>& rpnTokens)
 	{
 		TruthTable table;
 		size_t varCount = getVariableCount(rpnTokens);
@@ -53,118 +73,61 @@ namespace tbl
 		return table;
 	}
 
-	std::bitset<MAX_VARS> getVariables(const std::vector<char>& expression)
+	bool calculateExpression(std::vector<Token*> rpnTokens, std::bitset<52/*MAX_VARS*/>& variables, const size_t varCount)
 	{
-		std::bitset<MAX_VARS> vars;
-		size_t varCount = getVariableCount(expression);
-
-		assert(varCount <= MAX_VARS);
-
-		for (char c : expression)
+		if (rpnTokens.size() == 1)
 		{
-			if (isalpha(c))
-				vars[varCount - 1 - (int)(c - 65)] = 1;
-		}
-
-		return vars;
-	}
-
-	bool calculateExpression(std::vector<char> reversePolish, std::bitset<MAX_VARS>& variables, const size_t varCount)
-	{
-		std::stack<char> tempStack;
-		bool resultant = 0;
-		bool var1, var2;
-
-		if (reversePolish.size() == 1)
-			resultant = variables[varCount - 1 - (reversePolish.front() - 65)];
-		else
-		{
-			while (!reversePolish.empty())
-			{
-				if (!isalpha(reversePolish.front()))
-				{
-					if (tempStack.empty())
-						return false;
-					if (isdigit(tempStack.top()))
-						var1 = (tempStack.top() != '0');
-					else
-						var1 = variables[varCount - 1 - (tempStack.top() - 65)];
-					tempStack.pop();
-
-					if (reversePolish.front() != NOT_OP)
-					{
-						if (tempStack.empty())
-							return false;
-						if (isdigit(tempStack.top()))
-							var2 = (tempStack.top() != '0');
-						else
-							var2 = variables[varCount - 1 - (tempStack.top() - 65)];
-						tempStack.pop();
-					}
-				}
-
-				switch (reversePolish.front())
-				{
-				case AND_OP:
-					resultant = var1 & var2;
-					tempStack.push('0' + resultant);
-					reversePolish.erase(reversePolish.begin());
-					break;
-				case OR_OP:
-					resultant = var1 | var2;
-					tempStack.push('0' + resultant);
-					reversePolish.erase(reversePolish.begin());
-					break;
-				case NOT_OP:
-					resultant = !var1;
-					tempStack.push('0' + resultant);
-					reversePolish.erase(reversePolish.begin());
-					break;
-				case NAND_OP:
-					resultant = !(var1 & var2);
-					tempStack.push('0' + resultant);
-					reversePolish.erase(reversePolish.begin());
-					break;
-				case NOR_OP:
-					resultant = !(var1 | var2);
-					tempStack.push('0' + resultant);
-					reversePolish.erase(reversePolish.begin());
-					break;
-				case XOR_OP:
-					resultant = var1 ^ var2;
-					tempStack.push('0' + resultant);
-					reversePolish.erase(reversePolish.begin());
-					break;
-				case GREATER_OP:
-					if (var2)
-						resultant = var1;
-					else
-						resultant = 1;
-					tempStack.push('0' + resultant);
-					reversePolish.erase(reversePolish.begin());
-					break;
-				case LESS_OP:
-					resultant = ((var1 & var2) | (!var1 & !var2));
-					tempStack.push('0' + resultant);
-					reversePolish.erase(reversePolish.begin());
-					break;
-				default:
-					if (isalpha(reversePolish.front()))
-					{
-						tempStack.push(reversePolish.front());
-						reversePolish.erase(reversePolish.begin());
-					}
-					break;
-				}
-			}
-
-			if (tempStack.size() != 1)
+			if (rpnTokens.front()->getType() != Variable::VARIABLE_TYPE)
 				throw std::invalid_argument("Expression not valid");
 
-			resultant = (tempStack.top() != '0');
+			return variables[varCount - 1 - (reinterpret_cast<Variable*>(rpnTokens.front())->getVar() - 65)];
 		}
 
-		return resultant;
+		std::stack<Token*> varStack;
+		std::vector<Token*>::iterator it;
+		for (it = rpnTokens.begin(); it != rpnTokens.end(); ++it)
+		{
+			// Change to instanceof for more general function
+			if ((*it)->getType() == Operator<bool>::OPERATOR_TYPE || (*it)->getType() == UnaryOperator<bool>::UNARY_TYPE || (*it)->getType() == BinaryOperator<bool>::BINARY_TYPE)
+			{
+				Operator<bool>* op = reinterpret_cast<Operator<bool>*>(*it);
+
+				if (op->operandCount() > varStack.size())
+					throw std::invalid_argument("Expression not valid");
+
+				std::vector<bool> operands;
+				for (int i = 0; i < op->operandCount(); ++i)
+				{
+					switch (varStack.top()->getType())
+					{
+					case Variable::VARIABLE_TYPE:
+						operands.push_back(variables[varCount - 1 - (reinterpret_cast<Variable*>(varStack.top())->getVar() - 65)]);
+						break;
+					case Integer::INTEGER_TYPE:
+						operands.push_back(reinterpret_cast<Integer*>(varStack.top())->getValue());
+						delete varStack.top();
+						break;
+					default:
+						throw std::invalid_argument("Expression not valid");
+					}
+					varStack.pop();
+				}
+
+				if(op->getType() == UnaryOperator<bool>::UNARY_TYPE)
+					varStack.push(new Integer((*reinterpret_cast<UnaryOperator<bool>*>(op))(operands)));
+				else
+					varStack.push(new Integer((*op)(operands)));
+			}
+			else
+				varStack.push(*it);
+		}
+
+		if (varStack.size() != 1)
+			throw std::invalid_argument("Expression not valid");
+
+		int result = reinterpret_cast<Integer*>(varStack.top())->getValue();
+		delete varStack.top();
+		return result;
 	}
 
 	int numDigits(int number)
