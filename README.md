@@ -4,6 +4,8 @@ This simplifier utilizes both Quine McCluskey's and Petrick's methods to simplif
 
 Try out the live demo here: http://www.bool-simplifier.com/
 
+
+
 I initially wrote one recursive function to perform the basics of the QM method. I was so pleased with this one function that it inspired me to write the rest.
 
 The core QM method function:
