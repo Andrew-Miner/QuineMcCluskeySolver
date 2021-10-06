@@ -2,7 +2,7 @@
 
 This simplifier utilizes both Quine McCluskey's and Petrick's methods to simplify boolean algebra expressions.
 
-Try out the live demo here: http://www.bool-simplifier.com/
+Try out the live demo here: https://andrew-miner.github.io/Bool-Simplifier-Website/
 
 
 
